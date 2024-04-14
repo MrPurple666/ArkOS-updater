@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-UPDATE_DATE="04122024"
+UPDATE_DATE="04132024"
 LOG_FILE="/home/ark/update$UPDATE_DATE.log"
 UPDATE_DONE="/home/ark/.config/.update$UPDATE_DATE"
 
@@ -607,15 +607,15 @@ if [ ! -f "$UPDATE_DONE" ]; then
 
 	printf "\nAdd Change Time Script \nRename Change LED to Blue instead of Green \nAdd Support for Animated Launch Images \nReplace Kernel Drivers for WiFi from AmberElec \nAdded J2ME Support on es_systems.cfg \nFix Restore Scripts" | tee -a "$LOG_FILE"
 	sudo rm -rf /dev/shm/*
-	sudo wget -t 3 -T 60 --no-check-certificate "$LOCATION"/04122024/arkosupdate04122024.zip -O /dev/shm/arkosupdate04122024.zip -a "$LOG_FILE" || sudo rm -f /dev/shm/arkosupdate04122024.zip | tee -a "$LOG_FILE"
-	if [ -f "/dev/shm/arkosupdate04122024.zip" ]; then
-	  sudo unzip -X -o /dev/shm/arkosupdate04122024.zip -d / | tee -a "$LOG_FILE"
+	sudo wget -t 3 -T 60 --no-check-certificate "$LOCATION"/04132024/arkosupdate04132024.zip -O /dev/shm/arkosupdate04132024.zip -a "$LOG_FILE" || sudo rm -f /dev/shm/arkosupdate04132024.zip | tee -a "$LOG_FILE"
+	if [ -f "/dev/shm/arkosupdate04132024.zip" ]; then
+	  sudo unzip -X -o /dev/shm/arkosupdate04132024.zip -d / | tee -a "$LOG_FILE"
 	  sudo rm -fv /dev/shm/arkosupdate* | tee -a "$LOG_FILE"
           sudo apt update -y | tee -a "$LOG_FILE"
 	  sudo apt upgrade -y | tee -a "$LOG_FILE"
 	else
 	  printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
-	  sudo rm -fv /dev/shm/arkosupdate04122024.z* | tee -a "$LOG_FILE"
+	  sudo rm -fv /dev/shm/arkosupdate04132024.z* | tee -a "$LOG_FILE"
 	  sleep 3
 	  echo $c_brightness > /sys/class/backlight/backlight/brightness
 	  exit 1
