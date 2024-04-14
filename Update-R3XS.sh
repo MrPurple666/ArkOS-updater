@@ -611,6 +611,8 @@ if [ ! -f "$UPDATE_DONE" ]; then
 	if [ -f "/dev/shm/arkosupdate04122024.zip" ]; then
 	  sudo unzip -X -o /dev/shm/arkosupdate04122024.zip -d / | tee -a "$LOG_FILE"
 	  sudo rm -fv /dev/shm/arkosupdate* | tee -a "$LOG_FILE"
+          sudo apt update -y | tee -a "$LOG_FILE"
+	  sudo apt upgrade -y | tee -a "$LOG_FILE"
 	else
 	  printf "\nThe update couldn't complete because the package did not download correctly.\nPlease retry the update again." | tee -a "$LOG_FILE"
 	  sudo rm -fv /dev/shm/arkosupdate04122024.z* | tee -a "$LOG_FILE"
